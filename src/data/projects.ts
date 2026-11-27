@@ -27,13 +27,13 @@ export const projects: Project[] = [
     visual: { kind: "abstract", variant: "ledger" },
     caseStudy: {
       overview:
-        "At Stanbic IBTC, through Zest Payments, I build and maintain production financial applications that support multi-channel payments and digital banking for merchants and consumers.",
+        "At Stanbic IBTC, through Zest Payments, I lead a team building and maintaining merchant mobile applications while contributing to the development of backend systems that power multi-channel payments and financial operations.",
       problem:
         "Payment software has no quiet failure mode. A merchant who can't confirm a payment, or a customer who can't see where their money went, stops trusting the whole product. Every release has to land without breaking what already works.",
       built: [
-        "Production-grade financial applications supporting multi-channel payments and digital banking, for both merchant and consumer workflows.",
-        "Unit tests across UI components, screens and utility modules, maintained at 80%+ coverage.",
-        "An AI-assisted workflow for code review, debugging and expanding test coverage.",
+        "Led the engineering team responsible for building and delivering the merchant mobile application.",
+        "Contributed to building and maintaining settlement, instant settlement and reconciliation systems.",
+        "Maintained and improved backend services through code refactoring, performance optimisation and continuous engineering improvements.",
       ],
       challenge:
         "Shipping changes quickly into software people use to move money, without regressions. The answer wasn't heroics. It was a test suite broad enough that releases became uneventful, and review habits that caught problems before customers did.",
