@@ -91,30 +91,59 @@ export const principles: Principle[] = [
 ];
 
 export const toolGroups: ToolGroup[] = [
-  { title: "Languages", items: ["TypeScript", "JavaScript", "Java", "Kotlin"] },
-  { title: "Web", items: ["React", "Next.js", "HTML / CSS", "Material UI"] },
+  { title: "Backend", items: ["Java", "Spring Boot", "NestJS"] },
+  {
+    title: "Web",
+    items: [
+      "TypeScript / JavaScript",
+      "React",
+      "Next.js",
+      "HTML / CSS",
+      "Material UI",
+    ],
+  },
   {
     title: "Mobile",
-    items: ["React Native", "Jetpack Compose", "Xcode", "Android Studio"],
+    items: [
+      "React Native",
+      "Kotlin",
+      "Jetpack Compose",
+      "Xcode",
+      "Android Studio",
+    ],
   },
-  { title: "State & data", items: ["React Query", "Redux", "Zustand", "Context API"] },
+  {
+    title: "State & data",
+    items: ["React Query", "Redux", "Zustand", "Context API"],
+  },
   {
     title: "Testing",
     items: ["Unit testing", "React Testing Library", "RNTL", "Detox"],
   },
   {
     title: "Ship & measure",
-    items: ["Git / GitHub", "Azure DevOps", "Bitbucket", "Firebase", "AppsFlyer"],
+    items: [
+      "Git / GitHub",
+      "Azure DevOps",
+      "Bitbucket",
+      "Firebase",
+      "AppsFlyer",
+    ],
   },
 ];
 
 /**
- * Backend direction. `current` = languages already on the résumé.
- * `exploring` = what I'm actively learning — clearly labelled as such on the page.
+ * Backend direction. `current` = what I build backends with today.
+ * `currentlyExploring` = areas I'm actively going deeper into — labelled as such on the page.
  */
 export const backendDirection = {
-  current: ["Java", "Kotlin"],
-  exploring: ["Spring Boot", "PostgreSQL", "REST API design", "Docker"],
+  current: ["Java", "Spring Boot", "NestJS"],
+  currentlyExploring: [
+    // "AI Engineering",
+    "System Design & Architecture",
+    "Distributed Systems",
+    "AI-Assisted Software Development",
+  ],
 };
 
 export const education = [

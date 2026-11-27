@@ -16,9 +16,24 @@ const personJsonLd = {
   jobTitle: site.role,
   url: site.url,
   email: `mailto:${site.email}`,
-  address: { "@type": "PostalAddress", addressLocality: "Lagos", addressCountry: "NG" },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Lagos",
+    addressCountry: "NG",
+  },
   sameAs: [site.socials.linkedin, site.socials.github, site.socials.x],
-  knowsAbout: ["Software engineering", "Fintech", "Payments", "React", "React Native", "TypeScript", "Java", "Kotlin"],
+  knowsAbout: [
+    "Software engineering",
+    "Fintech",
+    "Payments",
+    "React",
+    "React Native",
+    "TypeScript",
+    "Java",
+    "Spring Boot",
+    "NestJS",
+    "Kotlin",
+  ],
 };
 
 const HomePage = () => (

@@ -54,14 +54,15 @@ export const Toolkit = () => (
             <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden /> Backend · Going deeper
           </p>
           <p className="text-title mt-6 max-w-[24ch]">
-            I know the client deeply. Now I build the systems behind it too.
+            I understand the product from the interface to the systems behind it.
           </p>
           <p className="mt-6 max-w-[54ch] text-mute">
-            After years of building client applications, my work at Zest Payments moved
-            underneath them: a settlement and reconciliation system, where idempotency, circuit
-            breakers and safe recovery decide whether money moves correctly. I&apos;m still going
-            deeper into APIs, databases, backend architecture and distributed systems, the same
-            way I learned everything else: by shipping.
+            I build web and mobile applications, lead engineering teams, and contribute to the
+            backend systems that power financial products. At Zest Payments, this includes working
+            on settlement and reconciliation systems, where reliability, financial integrity and
+            resilient architecture are critical. I bring the same ownership to every layer of
+            engineering, from building products to maintaining and improving the systems that
+            keep them running.
           </p>
           <Link
             href="/work/settlement-reconciliation"
@@ -85,9 +86,9 @@ export const Toolkit = () => (
             </dd>
           </div>
           <div>
-            <dt className="text-meta text-dim">Currently learning</dt>
+            <dt className="text-meta text-dim">Currently exploring</dt>
             <dd className="mt-3 flex flex-wrap gap-2">
-              {backendDirection.exploring.map((t) => (
+              {backendDirection.currentlyExploring.map((t) => (
                 <span
                   key={t}
                   className="rounded-full border border-dashed border-accent/50 px-3 py-1.5 text-sm text-paper/90"
