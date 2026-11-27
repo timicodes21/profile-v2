@@ -70,10 +70,12 @@ const FeaturedProject = ({
               <dt className="text-meta text-dim">Role</dt>
               <dd className="mt-1">{project.role}</dd>
             </div>
-            <div>
-              <dt className="text-meta text-dim">Period</dt>
-              <dd className="mt-1">{project.period}</dd>
-            </div>
+            {project.period && (
+              <div>
+                <dt className="text-meta text-dim">Period</dt>
+                <dd className="mt-1">{project.period}</dd>
+              </div>
+            )}
             <div className="col-span-2">
               <dt className="sr-only">Technology</dt>
               <dd className="flex flex-wrap gap-1.5">

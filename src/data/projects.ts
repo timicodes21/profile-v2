@@ -118,8 +118,64 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "zarttech",
+    slug: "novac-business",
     number: "03",
+    title: "Novac Business",
+    category: "Fintech · Mobile",
+    summary:
+      "A merchant banking app that gives a business one place to collect payments, send transfers, pay bills and keep track of every transaction.",
+    role: "Mobile Engineer (React Native)",
+    stack: [
+      "React Native",
+      "iOS",
+      "Android",
+      "Merchant payments",
+      "Transfers & bills",
+    ],
+    featured: true,
+    impact:
+      "Live on the App Store and Google Play: one app for a business's payments, transfers, bills and transactions.",
+    links: [
+      {
+        label: "Novac Business · iOS",
+        href: "https://apps.apple.com/ng/app/novac-business/id6759035226",
+      },
+      {
+        label: "Novac Business · Android",
+        href: "https://play.google.com/store/apps/details?id=com.novacpayments.app",
+      },
+    ],
+    visual: shot(
+      "/images/novac-ios.png",
+      "Novac Business iOS App Store screens: account dashboard, transfers and bill payments",
+    ),
+    gallery: [
+      shot(
+        "/images/novac-android.png",
+        "Novac Business Google Play screens: payment links and security",
+      ),
+    ],
+    caseStudy: {
+      overview:
+        "Novac Business is a production fintech app for merchants: one place for a business to accept payments, make transfers, pay bills and manage its transactions. I worked on the React Native app for iOS and Android. This is the product layer, where a business actually interacts with its money.",
+      problem:
+        "A business account isn't one person tapping 'Send'. Money comes in from customers and goes out to suppliers and bills, and every movement has to be visible and correct. The app has to make many financial workflows feel simple without hiding the detail a business needs to trust it.",
+      built: [
+        "Merchant-facing flows in React Native for payments, transfers and bill payments, shipped to iOS and Android.",
+        "Transaction management views, so a business can see what moved, where and when.",
+        "API-driven, multi-step financial workflows, with pending, success and failure states handled at every step.",
+      ],
+      challenge:
+        "Keeping the screen honest. A transfer can be pending, successful or failed, and an app that shows the wrong one costs a merchant's trust. The work was making every API-driven flow reflect the true state of the money, on both platforms, without making the app feel heavy.",
+      outcome: [
+        "Live on the App Store and Google Play.",
+        "One app for a business's payments, transfers, bills and transaction management.",
+      ],
+    },
+  },
+  {
+    slug: "zarttech",
+    number: "04",
     title: "Transfers, bills & group savings",
     context: "Zarttech",
     category: "Fintech · Mobile",
@@ -160,7 +216,7 @@ export const projects: Project[] = [
   },
   {
     slug: "blackcopper",
-    number: "04",
+    number: "05",
     title: "Loans, identity & engagement",
     context: "BlackCopper",
     category: "Fintech · Mobile",
@@ -212,7 +268,7 @@ export const projects: Project[] = [
   },
   {
     slug: "aiden",
-    number: "05",
+    number: "06",
     title: "Aiden",
     category: "Multi-tenant platform",
     summary:
@@ -275,7 +331,7 @@ export const projects: Project[] = [
   },
   {
     slug: "bossof",
-    number: "06",
+    number: "07",
     title: "Bossof",
     category: "Marketplace · Location",
     summary:
@@ -337,7 +393,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ingleswitch",
-    number: "07",
+    number: "08",
     title: "In-app support bot",
     context: "IngleSwitch",
     category: "Fintech · Mobile",
@@ -352,7 +408,7 @@ export const projects: Project[] = [
   },
   {
     slug: "estate-platform",
-    number: "08",
+    number: "09",
     title: "Estate management platform",
     context: "Newage Solutions",
     category: "Web · Real estate",
@@ -368,7 +424,7 @@ export const projects: Project[] = [
   {
     slug: "veranos",
     archive: true,
-    number: "09",
+    number: "10",
     title: "Veranos",
     category: "Web application",
     summary: "Web application.",
@@ -386,7 +442,7 @@ export const projects: Project[] = [
   {
     slug: "afrelib-ai-academy",
     archive: true,
-    number: "10",
+    number: "11",
     title: "Afrelib AI Academy",
     category: "Web application",
     summary: "Learning platform web application.",
@@ -404,7 +460,7 @@ export const projects: Project[] = [
   {
     slug: "cengpcs",
     archive: true,
-    number: "11",
+    number: "12",
     title: "CENGPCS",
     category: "Website",
     summary: "Organisation website.",

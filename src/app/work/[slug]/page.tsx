@@ -81,10 +81,12 @@ const CaseStudyPage = async ({ params }: Params) => {
               <dt className="text-meta text-dim">Role</dt>
               <dd className="mt-2">{project.role}</dd>
             </div>
-            <div>
-              <dt className="text-meta text-dim">Period</dt>
-              <dd className="mt-2">{project.period}</dd>
-            </div>
+            {project.period && (
+              <div>
+                <dt className="text-meta text-dim">Period</dt>
+                <dd className="mt-2">{project.period}</dd>
+              </div>
+            )}
             <div className="col-span-2">
               <dt className="text-meta text-dim">Technology</dt>
               <dd className="mt-2 flex flex-wrap gap-1.5">
