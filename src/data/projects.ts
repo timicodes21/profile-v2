@@ -16,12 +16,13 @@ export const projects: Project[] = [
     context: "Stanbic IBTC",
     category: "Fintech · Payments",
     summary:
-      "Production financial applications for multi-channel payments and digital banking, used by merchants and consumers.",
+      "Led and worked with the team that built the merchant mobile app and the development of settlement and reconciliation systems.",
     role: "Software Engineer",
     period: "2025 — Now",
-    stack: ["Payments", "Digital banking", "Merchant & consumer", "Unit testing"],
+    stack: ["Payments", "SETTLEMENTS", "Merchant & consumer", "Unit testing"],
     featured: true,
-    impact: "Fewer critical production issues, with unit-test coverage held at 80%+.",
+    impact:
+      "Fewer critical production issues, with unit-test coverage held at 80%+.",
     links: [],
     visual: { kind: "abstract", variant: "ledger" },
     caseStudy: {
@@ -54,7 +55,8 @@ export const projects: Project[] = [
     period: "2025 — Now",
     stack: ["Real-time data", "Monitoring", "Investigation tooling"],
     featured: true,
-    impact: "Faster investigation and resolution of branch transactions, and better customer service.",
+    impact:
+      "Faster investigation and resolution of branch transactions, and better customer service.",
     links: [],
     visual: { kind: "abstract", variant: "monitor" },
     caseStudy: {
@@ -84,9 +86,15 @@ export const projects: Project[] = [
       "Mobile money transfers, bill payments and savings, made faster, lighter and more secure. Includes a collaborative group savings feature.",
     role: "Software Engineer (React / React Native)",
     period: "2023 — 2025",
-    stack: ["React Native", "React", "Native secure storage", "Custom libraries"],
+    stack: [
+      "React Native",
+      "React",
+      "Native secure storage",
+      "Custom libraries",
+    ],
     featured: true,
-    impact: "About 25% faster load times and a smaller bundle, plus a new group savings feature.",
+    impact:
+      "About 25% faster load times and a smaller bundle, plus a new group savings feature.",
     links: [],
     visual: { kind: "abstract", variant: "savings" },
     caseStudy: {
@@ -129,7 +137,8 @@ export const projects: Project[] = [
       "Azure DevOps",
     ],
     featured: true,
-    impact: "Faster loan and verification processing, with engagement driven by push and A/B tests.",
+    impact:
+      "Faster loan and verification processing, with engagement driven by push and A/B tests.",
     links: [
       {
         label: "Google Play",
@@ -171,7 +180,8 @@ export const projects: Project[] = [
     period: "2024",
     stack: ["React Native", "iOS", "Android", "Multi-tenant"],
     featured: true,
-    impact: "Four production apps live: Customer and Business, on iOS and Android.",
+    impact:
+      "Four production apps live: Customer and Business, on iOS and Android.",
     links: [
       {
         label: "Customer · iOS",
@@ -196,8 +206,14 @@ export const projects: Project[] = [
     ),
     gallery: [
       shot("/images/aiden-business-ios.png", "Aiden business iOS app screens"),
-      shot("/images/aiden-customer-android.png", "Aiden customer Android app screens"),
-      shot("/images/aiden-business-android.png", "Aiden business Android app screens"),
+      shot(
+        "/images/aiden-customer-android.png",
+        "Aiden customer Android app screens",
+      ),
+      shot(
+        "/images/aiden-business-android.png",
+        "Aiden business Android app screens",
+      ),
     ],
     caseStudy: {
       overview:
@@ -245,11 +261,20 @@ export const projects: Project[] = [
         href: "https://play.google.com/store/apps/details?id=com.reinigungsservices.bossofpartnerapp",
       },
     ],
-    visual: shot("/images/bossof-customer-ios.png", "Bossof customer iOS app screens"),
+    visual: shot(
+      "/images/bossof-customer-ios.png",
+      "Bossof customer iOS app screens",
+    ),
     gallery: [
       shot("/images/bossof-cleaner-ios.png", "Bossof Partner iOS app screens"),
-      shot("/images/bossof-customer-android.png", "Bossof customer Android app screens"),
-      shot("/images/bossof-cleaner-android.png", "Bossof Partner Android app screens"),
+      shot(
+        "/images/bossof-customer-android.png",
+        "Bossof customer Android app screens",
+      ),
+      shot(
+        "/images/bossof-cleaner-android.png",
+        "Bossof Partner Android app screens",
+      ),
     ],
     caseStudy: {
       overview:
@@ -360,7 +385,8 @@ export const moreProjects = projects.filter((p) => !p.featured && !p.archive);
 export const archiveProjects = projects.filter((p) => p.archive);
 export const caseStudies = projects.filter((p) => p.caseStudy);
 
-export const getProject = (slug: string) => projects.find((p) => p.slug === slug);
+export const getProject = (slug: string) =>
+  projects.find((p) => p.slug === slug);
 
 /** Where a project row/card should lead: its case study, else its first external link. */
 export const projectHref = (p: Project) =>

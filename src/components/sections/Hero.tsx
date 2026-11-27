@@ -11,14 +11,31 @@ const strata = strataPaths();
 /** Résumé-sourced facts only. */
 const proof = [
   { value: "80%+", label: "Test coverage on production payment apps" },
-  { value: "~25%", label: "Faster loads after replacing heavy dependencies" },
-  { value: "Nationwide", label: "Real-time transaction monitoring for Ardova branches" },
-  { value: "5 apps", label: "I worked on, live on the App Store & Google Play" },
+  {
+    value: "Backend",
+    label: "Building secure APIs, services and data-driven systems",
+  },
+  {
+    value: "Leadership",
+    label: "Leading engineering teams to build and deliver products",
+  },
+  {
+    value: "6+ apps",
+    label: "I worked on, live on the App Store & Google Play",
+  },
 ];
 
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
-const Meta = ({ label, children, d }: { label: string; children: React.ReactNode; d: number }) => (
+const Meta = ({
+  label,
+  children,
+  d,
+}: {
+  label: string;
+  children: React.ReactNode;
+  d: number;
+}) => (
   <div className="enter" style={delay(d)}>
     <dt className="text-meta text-dim">{label}</dt>
     <dd className="mt-1.5 text-sm text-paper">{children}</dd>
@@ -40,9 +57,11 @@ export const Hero = () => (
       >
         {strata.map((d, i) => (
           <path
-                key={i}
+            key={i}
             d={d}
-            stroke={i === 13 ? "rgb(255 107 53 / 0.22)" : "rgb(245 245 240 / 0.06)"}
+            stroke={
+              i === 13 ? "rgb(255 107 53 / 0.22)" : "rgb(245 245 240 / 0.06)"
+            }
             strokeWidth={i === 13 ? 1 : 0.75}
           />
         ))}
@@ -51,12 +70,17 @@ export const Hero = () => (
 
     <div className="container-x relative flex flex-1 flex-col">
       {/* Status line */}
-      <div className="enter flex flex-wrap items-center gap-x-6 gap-y-2" style={delay(0)}>
+      <div
+        className="enter flex flex-wrap items-center gap-x-6 gap-y-2"
+        style={delay(0)}
+      >
         <span className="text-meta flex items-center gap-2.5 text-paper">
           <span className="status-dot" aria-hidden />
           Currently at Stanbic IBTC · Zest Payments
         </span>
-        <span className="text-meta hidden text-dim sm:inline">{site.coordinates}</span>
+        <span className="text-meta hidden text-dim sm:inline">
+          {site.coordinates}
+        </span>
       </div>
 
       {/* Name */}
@@ -74,16 +98,21 @@ export const Hero = () => (
       <div className="mt-[clamp(2rem,6vh,4rem)] grid gap-10 lg:grid-cols-12 lg:gap-6">
         <div className="lg:col-span-7">
           <p className="enter text-title max-w-[22ch]" style={delay(380)}>
-            Production-grade web & mobile software{" "}
-            <span className="text-mute">and, increasingly, the backend beneath it.</span>
+            Engineering products. Leading teams.{" "}
+            <span className="text-mute">Building systems that scale.</span>
           </p>
           <p className="enter mt-6 max-w-[52ch] text-mute" style={delay(480)}>
-            Software engineer at Stanbic IBTC (Zest Payments). I work on products where
-            reliability, security and trust matter, like payments, digital banking and real-time
-            transaction monitoring, and I own them through to production.
+            Software Engineer and Team Lead at Stanbic IBTC (Zest Payments). I
+            lead a team building products where reliability, security and trust
+            matter, including payment, wallet, settlement and reconciliation
+            systems, owning their engineering and delivery through to
+            production.
           </p>
 
-          <div className="enter mt-9 flex flex-wrap items-center gap-3" style={delay(580)}>
+          <div
+            className="enter mt-9 flex flex-wrap items-center gap-3"
+            style={delay(580)}
+          >
             <a
               href="#work"
               data-cursor="Work"
@@ -100,13 +129,28 @@ export const Hero = () => (
               <ArrowRight size={16} className="arrow-nudge" aria-hidden />
             </a>
             <div className="text-meta ml-1 flex items-center gap-5 text-mute">
-              <a className="link-u hover:text-paper" href={site.resume} target="_blank" rel="noopener noreferrer">
+              <a
+                className="link-u hover:text-paper"
+                href={site.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Résumé
               </a>
-              <a className="link-u hover:text-paper" href={site.socials.linkedin} target="_blank" rel="noopener noreferrer">
+              <a
+                className="link-u hover:text-paper"
+                href={site.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 LinkedIn
               </a>
-              <a className="link-u hover:text-paper" href={site.socials.github} target="_blank" rel="noopener noreferrer">
+              <a
+                className="link-u hover:text-paper"
+                href={site.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
@@ -138,7 +182,9 @@ export const Hero = () => (
         >
           {proof.map((p) => (
             <li key={p.label} className="bg-ink/90 p-4 backdrop-blur md:p-5">
-              <p className="font-display text-2xl tracking-[-0.03em] md:text-3xl">{p.value}</p>
+              <p className="font-display text-2xl tracking-[-0.03em] md:text-3xl">
+                {p.value}
+              </p>
               <p className="mt-1 text-sm leading-snug text-mute">{p.label}</p>
             </li>
           ))}
