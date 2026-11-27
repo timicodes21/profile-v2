@@ -13,7 +13,7 @@ const FeaturedProject = ({ project, index }: { project: Project; index: number }
   const flip = index % 2 === 1;
   const href = `/work/${project.slug}`;
   return (
-    <Reveal as="article" className="group relative border-t border-line py-[clamp(3rem,8vw,6.5rem)]">
+    <Reveal as="article" className="group relative border-t border-line py-[clamp(3rem,6.5vw,5.5rem)]">
       <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-6">
         <div className={flip ? "lg:order-2 lg:col-span-5 lg:col-start-8" : "lg:col-span-5"}>
           <div className="text-meta flex items-center justify-between text-dim">
@@ -33,6 +33,12 @@ const FeaturedProject = ({ project, index }: { project: Project; index: number }
           </h3>
           {project.context && <p className="text-meta mt-3 text-accent/90">{project.context}</p>}
           <p className="mt-5 max-w-[46ch] text-mute">{project.summary}</p>
+          {project.impact && (
+            <p className="mt-6 flex max-w-[46ch] gap-3 border-l border-accent/70 pl-4 text-paper">
+              <span className="sr-only">Outcome: </span>
+              {project.impact}
+            </p>
+          )}
 
           <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-line pt-5 text-sm">
             <div>
@@ -47,7 +53,7 @@ const FeaturedProject = ({ project, index }: { project: Project; index: number }
               <dt className="sr-only">Technology</dt>
               <dd className="flex flex-wrap gap-1.5">
                 {project.stack.slice(0, 5).map((s) => (
-                  <span key={s} className="text-meta rounded-full border border-line px-2.5 py-1 text-[0.625rem] text-mute">
+                  <span key={s} className="text-meta rounded-full border border-line px-2.5 py-1 text-[0.6875rem] text-mute">
                     {s}
                   </span>
                 ))}
@@ -70,7 +76,7 @@ const FeaturedProject = ({ project, index }: { project: Project; index: number }
 };
 
 export const SelectedWork = () => (
-  <section id="work" aria-label="Selected work" className="container-x pt-[clamp(5rem,12vw,10rem)]">
+  <section id="work" aria-label="Selected work" className="container-x pt-[clamp(4.5rem,10vw,8rem)]">
     <SectionHeader
       number="01"
       label="Selected work"

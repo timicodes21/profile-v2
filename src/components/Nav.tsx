@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -10,6 +10,18 @@ import { cn } from "@/lib/utils";
 
 import { Monogram } from "./Monogram";
 
+/** Every observed section → the nav item it belongs to (null = none highlighted). */
+const sectionToNav: Record<string, string | null> = {
+  top: null,
+  work: "work",
+  more: "work",
+  journey: "journey",
+  how: "how",
+  toolkit: "how",
+  about: null,
+  contact: "contact",
+};
+
 const useActiveSection = (ids: readonly string[], enabled: boolean) => {
   const [active, setActive] = useState<string | null>(null);
   useEffect(() => {
@@ -17,7 +29,7 @@ const useActiveSection = (ids: readonly string[], enabled: boolean) => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (entry.isIntersecting) setActive(sectionToNav[entry.target.id] ?? null);
         });
       },
       { rootMargin: "-45% 0px -50% 0px" },
@@ -31,7 +43,7 @@ const useActiveSection = (ids: readonly string[], enabled: boolean) => {
   return active;
 };
 
-const sectionIds = navItems.map((n) => n.id);
+const sectionIds = Object.keys(sectionToNav);
 
 export const Nav = () => {
   const pathname = usePathname();
@@ -160,7 +172,7 @@ export const Nav = () => {
 
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             id="mobile-menu"
             ref={menuRef}
             className="container-x flex h-[calc(100dvh-var(--nav-h))] flex-col justify-between pb-10 md:hidden"
@@ -171,7 +183,7 @@ export const Nav = () => {
           >
             <ul className="mt-8 border-t border-line">
               {navItems.map((item, i) => (
-                <motion.li
+                <m.li
                   key={item.id}
                   className="border-b border-line"
                   initial={{ opacity: 0, y: 16 }}
@@ -186,7 +198,7 @@ export const Nav = () => {
                     <span className="font-display text-4xl tracking-tight">{item.label}</span>
                     <span className="text-meta text-dim">0{i + 1}</span>
                   </Link>
-                </motion.li>
+                </m.li>
               ))}
             </ul>
             <div className="flex flex-wrap gap-x-6 gap-y-3 text-meta text-mute">
@@ -201,7 +213,7 @@ export const Nav = () => {
               </a>
               <a href={`mailto:${site.email}`}>Email</a>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </header>

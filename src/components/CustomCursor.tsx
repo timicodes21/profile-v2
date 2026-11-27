@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
+import { AnimatePresence, m, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type CursorState = { kind: "default" | "hover" | "label" | "external"; label?: string };
@@ -72,14 +72,14 @@ export const CustomCursor = () => {
     state.kind === "label" ? 76 : state.kind === "external" ? 34 : state.kind === "hover" ? 30 : 8;
 
   return (
-    <motion.div
+    <m.div
       aria-hidden
       className="pointer-events-none fixed top-0 left-0 z-[90]"
       style={{ x: sx, y: sy }}
       animate={{ opacity: visible ? 1 : 0 }}
       transition={{ duration: 0.2 }}
     >
-      <motion.div
+      <m.div
         className="flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full"
         animate={{
           width: size,
@@ -97,7 +97,7 @@ export const CustomCursor = () => {
       >
         <AnimatePresence mode="wait">
           {state.kind === "label" && (
-            <motion.span
+            <m.span
               key={state.label}
               className="text-meta font-medium text-ink"
               initial={{ opacity: 0, scale: 0.6 }}
@@ -106,10 +106,10 @@ export const CustomCursor = () => {
               transition={{ duration: 0.18 }}
             >
               {state.label}
-            </motion.span>
+            </m.span>
           )}
           {state.kind === "external" && (
-            <motion.span
+            <m.span
               key="ext"
               className="text-xs text-paper"
               initial={{ opacity: 0 }}
@@ -117,10 +117,10 @@ export const CustomCursor = () => {
               exit={{ opacity: 0 }}
             >
               ↗
-            </motion.span>
+            </m.span>
           )}
         </AnimatePresence>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 };

@@ -64,6 +64,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     suppressHydrationWarning
   >
     <body className="grain min-h-dvh overflow-x-clip">
+      {/* Without JS, scroll reveals never fire: show everything instead of a blank page. */}
+      <noscript>
+        <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}.line-mask>span{transform:none!important}`}</style>
+      </noscript>
       <a
         href="#main"
         className="text-meta fixed top-3 left-3 z-[100] -translate-y-20 rounded-full bg-paper px-4 py-2 text-ink focus:translate-y-0"

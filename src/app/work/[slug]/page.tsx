@@ -85,7 +85,7 @@ const CaseStudyPage = async ({ params }: Params) => {
               <dt className="text-meta text-dim">Technology</dt>
               <dd className="mt-2 flex flex-wrap gap-1.5">
                 {project.stack.map((s) => (
-                  <span key={s} className="text-meta rounded-full border border-line px-2.5 py-1 text-[0.625rem] text-mute">
+                  <span key={s} className="text-meta rounded-full border border-line px-2.5 py-1 text-[0.6875rem] text-mute">
                     {s}
                   </span>
                 ))}

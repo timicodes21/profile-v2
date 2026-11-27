@@ -21,7 +21,7 @@ export const site = {
   socials: {
     linkedin: "https://www.linkedin.com/in/timileyin-babalola-283b4b149/",
     github: "https://github.com/timicodes21",
-    x: "https://x.com/dev_timi",
+    x: "https://x.com/theglobaltimi",
   },
 } as const;
 

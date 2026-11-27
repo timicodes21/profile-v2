@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
+import { AnimatePresence, m, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -29,18 +29,18 @@ const Row = ({
         </span>
         {project.context && <span className="text-meta mt-1 block text-dim">{project.context}</span>}
       </span>
-      <span className="col-span-2 col-start-2 row-start-2 text-sm text-mute md:col-span-4 md:col-start-auto md:row-start-auto">
+      <span className="col-span-2 col-start-2 row-start-2 text-sm text-mute md:col-span-3 md:col-start-auto md:row-start-auto">
         {project.summary}
       </span>
       <span className="text-meta hidden text-dim md:col-span-2 md:block">{project.category}</span>
-      <span className="text-meta col-start-3 row-start-1 flex items-start justify-end gap-2 pt-2 text-dim md:col-span-1 md:col-start-auto md:row-start-auto md:pt-0">
+      <span className="text-meta col-start-3 row-start-1 flex items-start justify-end gap-3 pt-2 whitespace-nowrap text-dim md:col-span-2 md:col-start-auto md:row-start-auto md:pt-0">
         <span className="hidden lg:inline">{project.period ?? ""}</span>
         {href ? (
           <span className="arrow-nudge text-paper group-hover:text-accent" aria-hidden>
             {external ? "↗" : "→"}
           </span>
         ) : (
-          <span className="text-[0.6rem] text-dim">Internal</span>
+          <span className="text-[0.6875rem] text-dim">Internal</span>
         )}
       </span>
     </>
@@ -109,14 +109,14 @@ export const MoreWorkList = ({ projects }: { projects: Project[] }) => {
       </ul>
 
       {/* Floating preview — desktop pointer only, decorative */}
-      <motion.div
+      <m.div
         aria-hidden
         className="pointer-events-none absolute top-0 left-0 z-10 hidden w-[340px] lg:block"
         style={{ x: sx, y: sy, translateX: "-50%", translateY: "-115%" }}
       >
         <AnimatePresence>
           {active && (
-            <motion.div
+            <m.div
               key={active.slug}
               initial={{ opacity: 0, scale: 0.92, rotate: -2 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -125,10 +125,10 @@ export const MoreWorkList = ({ projects }: { projects: Project[] }) => {
               className="shadow-[0_30px_80px_-20px_rgb(0_0_0/0.8)]"
             >
               <ProjectVisual visual={active.visual} sizes="340px" />
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </m.div>
     </div>
   );
 };

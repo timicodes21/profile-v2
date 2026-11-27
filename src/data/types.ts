@@ -41,6 +41,10 @@ export type Project = {
   period?: string;
   stack: string[];
   featured: boolean;
+  /** One-line result shown on the card. Must be traceable to the résumé. */
+  impact?: string;
+  /** Minor work with no verified role/details: rendered as a compact link, not a full row. */
+  archive?: boolean;
   links: Link[];
   visual: ProjectVisual;
   gallery?: Extract<ProjectVisual, { kind: "image" }>[];

@@ -201,7 +201,7 @@ export const ProjectVisual = ({ visual, className, sizes = "(min-width: 1024px) 
             return <Abstract />;
           })()}
         </div>
-        <span className="text-meta absolute right-4 bottom-4 rounded-full border border-line bg-ink/70 px-2.5 py-1 text-[0.6rem] text-dim backdrop-blur">
+        <span className="text-meta absolute right-4 bottom-4 rounded-full border border-line bg-ink/70 px-2.5 py-1 text-[0.6875rem] text-dim backdrop-blur">
           Illustration · product is private
         </span>
       </>

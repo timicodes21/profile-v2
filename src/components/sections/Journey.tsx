@@ -5,7 +5,7 @@ import { SectionHeader } from "../SectionHeader";
 import { Timeline } from "../Timeline";
 
 export const Journey = () => (
-  <section id="journey" aria-label="Career journey" className="container-x pt-[clamp(6rem,14vw,12rem)]">
+  <section id="journey" aria-label="Career journey" className="container-x pt-[clamp(5rem,11vw,9rem)]">
     <SectionHeader
       number="03"
       label="Journey"

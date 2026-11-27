@@ -6,7 +6,7 @@ import { Reveal } from "../Reveal";
 import { SectionHeader } from "../SectionHeader";
 
 export const About = () => (
-  <section id="about" aria-label="About" className="container-x pt-[clamp(6rem,14vw,12rem)]">
+  <section id="about" aria-label="About" className="container-x pt-[clamp(5rem,11vw,9rem)]">
     <SectionHeader
       number="06"
       label="About"

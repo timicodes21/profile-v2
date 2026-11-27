@@ -4,7 +4,7 @@ import { Reveal } from "../Reveal";
 import { SectionHeader } from "../SectionHeader";
 
 export const Toolkit = () => (
-  <section id="toolkit" aria-label="Technical toolkit" className="container-x pt-[clamp(6rem,14vw,12rem)]">
+  <section id="toolkit" aria-label="Technical toolkit" className="container-x pt-[clamp(5rem,11vw,9rem)]">
     <SectionHeader
       number="05"
       label="Toolkit"
@@ -49,7 +49,7 @@ export const Toolkit = () => (
       <div className="relative grid gap-10 p-6 md:p-10 lg:grid-cols-12 lg:gap-6 lg:p-14">
         <div className="lg:col-span-7">
           <p className="text-meta flex items-center gap-2 text-accent">
-            <span className="status-dot" aria-hidden /> In progress · Backend direction
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden /> In progress · Backend direction
           </p>
           <p className="text-title mt-6 max-w-[24ch]">
             I know the client deeply. Now I&apos;m learning the systems behind it.

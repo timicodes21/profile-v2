@@ -8,6 +8,14 @@ import { LocalTime } from "../LocalTime";
 
 const strata = strataPaths();
 
+/** Résumé-sourced facts only. */
+const proof = [
+  { value: "80%+", label: "Test coverage on production payment apps" },
+  { value: "~25%", label: "Faster loads after replacing heavy dependencies" },
+  { value: "Nationwide", label: "Real-time transaction monitoring for Ardova branches" },
+  { value: "5 apps", label: "I worked on, live on the App Store & Google Play" },
+];
+
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 const Meta = ({ label, children, d }: { label: string; children: React.ReactNode; d: number }) => (
@@ -66,13 +74,13 @@ export const Hero = () => (
       <div className="mt-[clamp(2rem,6vh,4rem)] grid gap-10 lg:grid-cols-12 lg:gap-6">
         <div className="lg:col-span-7">
           <p className="enter text-title max-w-[22ch]" style={delay(380)}>
-            Software engineer building production-grade{" "}
-            <span className="text-mute">web, mobile & backend systems.</span>
+            Production-grade web & mobile software{" "}
+            <span className="text-mute">and, increasingly, the backend beneath it.</span>
           </p>
           <p className="enter mt-6 max-w-[52ch] text-mute" style={delay(480)}>
-            I build software for products where reliability, security and trust matter:
-            payments, digital banking and the web and mobile apps people use every day.
-            Lately I&apos;ve been going deeper into the systems underneath them.
+            Software engineer at Stanbic IBTC (Zest Payments). I work on products where
+            reliability, security and trust matter, like payments, digital banking and real-time
+            transaction monitoring, and I own them through to production.
           </p>
 
           <div className="enter mt-9 flex flex-wrap items-center gap-3" style={delay(580)}>
@@ -116,19 +124,35 @@ export const Hero = () => (
             Remote & global roles
           </Meta>
           <Meta label="Focus" d={760}>
-            Fintech · Web · Mobile <span className="text-accent">→</span> Backend
+            Fintech · Web · Mobile <span className="text-accent">→</span>{" "}
+            <span className="text-mute">Backend</span>
           </Meta>
         </dl>
       </div>
 
-      <div className="enter mt-auto flex items-center justify-between py-8" style={delay(900)}>
-        <a href="#work" className="text-meta group flex items-center gap-3 text-dim hover:text-paper">
+      <div className="mt-auto pt-14 pb-8">
+        <ul
+          aria-label="Selected evidence"
+          className="enter grid grid-cols-2 gap-px overflow-hidden rounded-[14px] border border-line bg-line md:grid-cols-4"
+          style={delay(860)}
+        >
+          {proof.map((p) => (
+            <li key={p.label} className="bg-ink/90 p-4 backdrop-blur md:p-5">
+              <p className="font-display text-2xl tracking-[-0.03em] md:text-3xl">{p.value}</p>
+              <p className="mt-1 text-sm leading-snug text-mute">{p.label}</p>
+            </li>
+          ))}
+        </ul>
+        <a
+          href="#work"
+          className="text-meta group enter mt-6 hidden items-center gap-3 text-dim hover:text-paper md:inline-flex"
+          style={delay(950)}
+        >
           <span className="flex h-8 w-8 items-center justify-center rounded-full border border-line transition-colors group-hover:border-accent/60">
             <ArrowDown size={13} aria-hidden />
           </span>
-          Scroll
+          See the work behind these
         </a>
-        <span className="text-meta text-dim">Index · 01 — 07</span>
       </div>
     </div>
   </section>

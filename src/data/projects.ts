@@ -19,8 +19,9 @@ export const projects: Project[] = [
       "Production financial applications for multi-channel payments and digital banking, used by merchants and consumers.",
     role: "Software Engineer",
     period: "2025 — Now",
-    stack: ["TypeScript", "Web & mobile", "Unit testing", "AI-assisted review"],
+    stack: ["Payments", "Digital banking", "Merchant & consumer", "Unit testing"],
     featured: true,
+    impact: "Fewer critical production issues, with unit-test coverage held at 80%+.",
     links: [],
     visual: { kind: "abstract", variant: "ledger" },
     caseStudy: {
@@ -51,8 +52,9 @@ export const projects: Project[] = [
       "Live transaction visibility across Ardova branches in Nigeria, so support teams can investigate and resolve issues faster.",
     role: "Software Engineer",
     period: "2025 — Now",
-    stack: ["Real-time data", "Monitoring UI", "TypeScript"],
+    stack: ["Real-time data", "Monitoring", "Investigation tooling"],
     featured: true,
+    impact: "Faster investigation and resolution of branch transactions, and better customer service.",
     links: [],
     visual: { kind: "abstract", variant: "monitor" },
     caseStudy: {
@@ -82,8 +84,9 @@ export const projects: Project[] = [
       "Mobile money transfers, bill payments and savings, made faster, lighter and more secure. Includes a collaborative group savings feature.",
     role: "Software Engineer (React / React Native)",
     period: "2023 — 2025",
-    stack: ["React Native", "React", "TypeScript", "Native secure storage"],
+    stack: ["React Native", "React", "Native secure storage", "Custom libraries"],
     featured: true,
+    impact: "About 25% faster load times and a smaller bundle, plus a new group savings feature.",
     links: [],
     visual: { kind: "abstract", variant: "savings" },
     caseStudy: {
@@ -126,6 +129,7 @@ export const projects: Project[] = [
       "Azure DevOps",
     ],
     featured: true,
+    impact: "Faster loan and verification processing, with engagement driven by push and A/B tests.",
     links: [
       {
         label: "Google Play",
@@ -165,8 +169,9 @@ export const projects: Project[] = [
       "One operational platform for reservations, orders, events and payments, with separate apps for businesses and customers.",
     role: "Mobile Developer (React Native)",
     period: "2024",
-    stack: ["React Native", "TypeScript", "iOS", "Android"],
+    stack: ["React Native", "iOS", "Android", "Multi-tenant"],
     featured: true,
+    impact: "Four production apps live: Customer and Business, on iOS and Android.",
     links: [
       {
         label: "Customer · iOS",
@@ -296,6 +301,7 @@ export const projects: Project[] = [
   },
   {
     slug: "veranos",
+    archive: true,
     number: "09",
     title: "Veranos",
     category: "Web application",
@@ -313,6 +319,7 @@ export const projects: Project[] = [
   },
   {
     slug: "afrelib-ai-academy",
+    archive: true,
     number: "10",
     title: "Afrelib AI Academy",
     category: "Web application",
@@ -330,6 +337,7 @@ export const projects: Project[] = [
   },
   {
     slug: "cengpcs",
+    archive: true,
     number: "11",
     title: "CENGPCS",
     category: "Website",
@@ -348,7 +356,8 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
-export const moreProjects = projects.filter((p) => !p.featured);
+export const moreProjects = projects.filter((p) => !p.featured && !p.archive);
+export const archiveProjects = projects.filter((p) => p.archive);
 export const caseStudies = projects.filter((p) => p.caseStudy);
 
 export const getProject = (slug: string) => projects.find((p) => p.slug === slug);

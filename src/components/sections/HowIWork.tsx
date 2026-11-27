@@ -4,7 +4,7 @@ import { Reveal } from "../Reveal";
 import { SectionHeader } from "../SectionHeader";
 
 export const HowIWork = () => (
-  <section id="how" aria-label="How I work" className="container-x pt-[clamp(6rem,14vw,12rem)]">
+  <section id="how" aria-label="How I work" className="container-x pt-[clamp(5rem,11vw,9rem)]">
     <SectionHeader
       number="04"
       label="How I work"

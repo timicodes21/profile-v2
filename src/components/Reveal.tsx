@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { m, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -16,7 +16,7 @@ type RevealProps = {
 
 /** Fade + rise when the element enters the viewport. Runs once. */
 export const Reveal = ({ children, className, delay = 0, y = 24, as = "div" }: RevealProps) => {
-  const Tag = motion[as];
+  const Tag = m[as];
   return (
     <Tag
       className={className}
@@ -46,7 +46,7 @@ type RevealLinesProps = {
 
 /** Large heading revealed line by line through a clipping mask. */
 export const RevealLines = ({ lines, className, as = "h2" }: RevealLinesProps) => {
-  const Tag = motion[as];
+  const Tag = m[as];
   return (
     <Tag
       className={cn(className)}
@@ -56,9 +56,9 @@ export const RevealLines = ({ lines, className, as = "h2" }: RevealLinesProps) =
     >
       {lines.map((line, i) => (
         <span key={i} className="line-mask">
-          <motion.span className="block" custom={i} variants={lineVariants}>
+          <m.span className="block" custom={i} variants={lineVariants}>
             {line}
-          </motion.span>
+          </m.span>
         </span>
       ))}
     </Tag>

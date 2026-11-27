@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 
 import { site } from "@/data/site";
+import { strataPaths } from "@/lib/strata";
 
 import { Reveal, RevealLines } from "../Reveal";
 
@@ -11,12 +12,36 @@ const links = [
   { label: "Résumé", value: "PDF · 2 pages", href: site.resume, external: true },
 ];
 
+// Same strata as the hero, different seed: the page opens and closes on the same motif.
+const strata = strataPaths({ seed: 23, count: 18 });
+
 export const Contact = () => (
   <section
     id="contact"
     aria-label="Contact"
-    className="container-x relative pt-[clamp(7rem,16vw,14rem)] pb-[clamp(4rem,8vw,7rem)]"
+    className="relative overflow-hidden"
   >
+    <svg
+      aria-hidden
+      viewBox="0 0 1440 900"
+      preserveAspectRatio="xMidYMid slice"
+      className="pointer-events-none absolute inset-0 -z-0 h-full w-full"
+      fill="none"
+      style={{
+        maskImage: "linear-gradient(to bottom, transparent, black 35%, black 70%, transparent)",
+        WebkitMaskImage: "linear-gradient(to bottom, transparent, black 35%, black 70%, transparent)",
+      }}
+    >
+      {strata.map((d, i) => (
+        <path
+          key={d}
+          d={d}
+          stroke={i === 11 ? "rgb(255 107 53 / 0.22)" : "rgb(245 245 240 / 0.05)"}
+          strokeWidth={0.75}
+        />
+      ))}
+    </svg>
+    <div className="container-x relative pt-[clamp(6rem,12vw,10rem)] pb-[clamp(4rem,8vw,7rem)]">
     <Reveal y={12}>
       <p className="text-meta flex items-center gap-3 text-dim">
         <span className="text-accent">07</span>
@@ -67,6 +92,7 @@ export const Contact = () => (
           ))}
         </ul>
       </Reveal>
+    </div>
     </div>
   </section>
 );

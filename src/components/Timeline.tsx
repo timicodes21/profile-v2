@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import { m, useScroll, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 import type { Experience } from "@/data/types";
@@ -70,7 +70,7 @@ export const Timeline = ({ entries, next }: Props) => {
               <span key={`t${y}`} className="absolute bottom-[3px] h-2 w-px bg-line-strong" style={{ left: pos(y) }} />
             ))}
             <span className="absolute inset-x-0 bottom-1 h-px bg-line-strong" />
-            <motion.span
+            <m.span
               className="absolute inset-x-0 bottom-1 h-px origin-left bg-accent"
               initial={false}
               animate={{ scaleX: (markers[active] - START) / (END - START) }}
@@ -98,7 +98,7 @@ export const Timeline = ({ entries, next }: Props) => {
       <ol className="relative mt-4 lg:mt-0">
         {/* Mobile vertical line */}
         <span aria-hidden className="absolute top-2 bottom-2 left-[5px] w-px bg-line lg:hidden" />
-        <motion.span
+        <m.span
           aria-hidden
           className="absolute top-2 bottom-2 left-[5px] w-px origin-top bg-accent lg:hidden"
           style={{ scaleY: progress }}
@@ -111,10 +111,8 @@ export const Timeline = ({ entries, next }: Props) => {
               items.current[i] = el;
             }}
             data-index={i}
-            className={cn(
-              "relative grid gap-4 py-10 pl-8 transition-opacity duration-700 lg:grid-cols-12 lg:gap-6 lg:border-b lg:border-line lg:py-16 lg:pl-0",
-              i === active ? "opacity-100" : "opacity-100 lg:opacity-40",
-            )}
+            aria-current={i === active ? "step" : undefined}
+            className="relative grid gap-4 py-10 pl-8 lg:grid-cols-12 lg:gap-6 lg:border-b lg:border-line lg:py-16 lg:pl-0"
           >
             <span
               aria-hidden
@@ -127,23 +125,43 @@ export const Timeline = ({ entries, next }: Props) => {
               <p className="text-meta text-dim tabular-nums">{e.period}</p>
               {e.current && (
                 <p className="text-meta mt-2 inline-flex items-center gap-2 text-accent">
-                  <span className="status-dot" aria-hidden /> Current
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden /> Current
                 </p>
               )}
             </div>
             <div className="lg:col-span-4">
-              <h3 className="font-display text-3xl tracking-[-0.035em] lg:text-4xl">{e.company}</h3>
+              <h3
+                className={cn(
+                  "font-display text-3xl tracking-[-0.035em] transition-colors duration-500 lg:text-4xl",
+                  i === active ? "text-paper" : "text-paper lg:text-mute",
+                )}
+              >
+                {e.company}
+              </h3>
               <p className="mt-2 text-mute">{e.role}</p>
               <p className="text-meta mt-1 text-dim">{e.location}</p>
             </div>
             <div className="lg:col-span-5">
-              <p className="text-meta text-accent">
+              <p
+                className={cn(
+                  "text-meta transition-colors duration-500",
+                  i === active ? "text-accent" : "text-accent lg:text-dim",
+                )}
+              >
                 {String(i + 1).padStart(2, "0")} — {e.chapter}
               </p>
-              <p className="mt-3 text-paper/90">{e.story}</p>
+              {/* Dim by colour, not opacity, so inactive copy still passes WCAG AA. */}
+              <p
+                className={cn(
+                  "mt-3 transition-colors duration-500",
+                  i === active ? "text-paper" : "text-paper/90 lg:text-mute",
+                )}
+              >
+                {e.story}
+              </p>
               <ul className="mt-5 flex flex-wrap gap-1.5" aria-label="Focus">
                 {e.stack.map((s) => (
-                  <li key={s} className="text-meta rounded-full border border-line px-2.5 py-1 text-[0.625rem] text-mute">
+                  <li key={s} className="text-meta rounded-full border border-line px-2.5 py-1 text-[0.6875rem] text-mute">
                     {s}
                   </li>
                 ))}
@@ -157,10 +175,8 @@ export const Timeline = ({ entries, next }: Props) => {
             items.current[entries.length] = el;
           }}
           data-index={entries.length}
-          className={cn(
-            "relative grid gap-4 py-10 pl-8 transition-opacity duration-700 lg:grid-cols-12 lg:gap-6 lg:py-16 lg:pl-0",
-            active === entries.length ? "opacity-100" : "opacity-100 lg:opacity-40",
-          )}
+          aria-current={active === entries.length ? "step" : undefined}
+          className="relative grid gap-4 py-10 pl-8 lg:grid-cols-12 lg:gap-6 lg:py-16 lg:pl-0"
         >
           <span
             aria-hidden
