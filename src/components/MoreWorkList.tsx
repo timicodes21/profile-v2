@@ -76,7 +76,7 @@ const Row = ({
           {content}
         </a>
       ) : (
-        <Link href={href} className={className} data-cursor="Read">
+        <Link href={href} className={className}>
           {content}
         </Link>
       )}

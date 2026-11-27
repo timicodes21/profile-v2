@@ -48,7 +48,6 @@ const FeaturedProject = ({
             <Link
               href={href}
               className="after:absolute after:inset-0 after:z-[1] after:content-['']"
-              data-cursor="View"
             >
               <span className="inline-block transition-transform duration-500 ease-(--ease) group-hover:translate-x-1.5">
                 {project.title}
@@ -93,7 +92,6 @@ const FeaturedProject = ({
           <Link
             href={href}
             data-cta
-            data-cursor="Read"
             aria-label={`Read the ${project.title} case study`}
             className="text-meta relative z-10 mt-8 inline-flex items-center gap-3 py-2 text-paper hover:text-accent"
           >
@@ -109,10 +107,19 @@ const FeaturedProject = ({
             flip ? "lg:order-1 lg:col-span-7" : "lg:col-span-7 lg:col-start-6"
           }
         >
-          <ProjectVisual
-            visual={project.visual}
-            sizes="(min-width: 1024px) 56vw, 100vw"
-          />
+          {/* Sits above the stretched link so the labelled cursor appears on the image only. */}
+          <Link
+            href={href}
+            tabIndex={-1}
+            aria-hidden
+            data-cursor="View"
+            className="relative z-[2] block"
+          >
+            <ProjectVisual
+              visual={project.visual}
+              sizes="(min-width: 1024px) 56vw, 100vw"
+            />
+          </Link>
         </div>
       </div>
     </Reveal>
