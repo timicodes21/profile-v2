@@ -47,7 +47,7 @@ const FeaturedProject = ({
           <h3 className="text-title mt-8">
             <Link
               href={href}
-              className="after:absolute after:inset-0 after:content-['']"
+              className="after:absolute after:inset-0 after:z-[1] after:content-['']"
               data-cursor="View"
             >
               <span className="inline-block transition-transform duration-500 ease-(--ease) group-hover:translate-x-1.5">

@@ -24,7 +24,7 @@ const Row = ({
         {project.number}
       </span>
       <span className="col-start-2 row-start-1 md:col-span-4 md:col-start-auto md:row-start-auto">
-        <span className="font-display block text-2xl tracking-[-0.03em] transition-transform duration-500 ease-[var(--ease)] group-hover:translate-x-1.5 md:text-[1.75rem]">
+        <span className="font-display block text-2xl tracking-[-0.03em] transition-transform duration-500 ease-(--ease) group-hover:translate-x-1.5 md:text-[1.75rem]">
           {project.title}
         </span>
         {project.context && <span className="text-meta mt-1 block text-dim">{project.context}</span>}
