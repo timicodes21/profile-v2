@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { backendDirection, toolGroups } from "@/data/content";
 
 import { Reveal } from "../Reveal";
@@ -49,18 +51,27 @@ export const Toolkit = () => (
       <div className="relative grid gap-10 p-6 md:p-10 lg:grid-cols-12 lg:gap-6 lg:p-14">
         <div className="lg:col-span-7">
           <p className="text-meta flex items-center gap-2 text-accent">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden /> In progress · Backend direction
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden /> Backend · Going deeper
           </p>
           <p className="text-title mt-6 max-w-[24ch]">
-            I know the client deeply. Now I&apos;m learning the systems behind it.
+            I know the client deeply. Now I build the systems behind it too.
           </p>
           <p className="mt-6 max-w-[54ch] text-mute">
-            After years of building client applications and production fintech products,
-            I&apos;m deliberately moving deeper into what sits underneath them: APIs, databases,
-            security, backend architecture and, eventually, distributed systems. I&apos;m not
-            claiming seniority there yet. I&apos;m building it the same way I built everything
-            else, by shipping.
+            After years of building client applications, my work at Zest Payments moved
+            underneath them: a settlement and reconciliation system, where idempotency, circuit
+            breakers and safe recovery decide whether money moves correctly. I&apos;m still going
+            deeper into APIs, databases, backend architecture and distributed systems, the same
+            way I learned everything else: by shipping.
           </p>
+          <Link
+            href="/work/settlement-reconciliation"
+            className="text-meta group mt-6 inline-flex items-center gap-3 py-2 text-paper hover:text-accent"
+          >
+            Read the settlement case study
+            <span className="arrow-nudge text-accent" aria-hidden>
+              →
+            </span>
+          </Link>
         </div>
         <dl className="grid content-end gap-8 sm:grid-cols-2 lg:col-span-4 lg:col-start-9 lg:grid-cols-1">
           <div>

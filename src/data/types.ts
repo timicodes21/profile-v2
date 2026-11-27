@@ -17,7 +17,7 @@ export type ProjectVisual =
        * authentic screenshots exist. Always labelled as an illustration.
        */
       kind: "abstract";
-      variant: "ledger" | "monitor" | "savings" | "bot" | "estate";
+      variant: "ledger" | "settlement" | "savings" | "bot" | "estate";
     };
 
 export type CaseStudy = {
@@ -25,6 +25,8 @@ export type CaseStudy = {
   problem: string;
   built: string[];
   challenge: string;
+  /** Optional engineering/reliability practices, shown as their own section. */
+  considerations?: { title: string; body: string }[];
   outcome: string[];
 };
 

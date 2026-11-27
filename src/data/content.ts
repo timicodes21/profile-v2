@@ -54,8 +54,8 @@ export const experience: Experience[] = [
     location: "Lagos, Nigeria",
     chapter: "Production fintech",
     story:
-      "Payments and digital banking for merchants and consumers, plus real-time transaction monitoring for Ardova branches nationwide. Here reliability is the product: 80%+ test coverage is how releases stay uneventful.",
-    stack: ["Payments", "Monitoring", "Testing"],
+      "Payments and digital banking for merchants and consumers, and the settlement and reconciliation system behind them: instant settlement into wallets, automated payouts, and idempotent, fault-tolerant processing. Here reliability is the product.",
+    stack: ["Payments", "Settlement & reconciliation", "Testing"],
     current: true,
   },
 ];

@@ -43,6 +43,10 @@ const CaseStudyPage = async ({ params }: Params) => {
   if (!project?.caseStudy) notFound();
   const cs = project.caseStudy;
 
+  // Section numbers are computed so optional sections never leave gaps.
+  let section = 0;
+  const num = () => String(++section).padStart(2, "0");
+
   const index = caseStudies.findIndex((p) => p.slug === slug);
   const next = caseStudies[(index + 1) % caseStudies.length];
 
@@ -99,13 +103,13 @@ const CaseStudyPage = async ({ params }: Params) => {
         </Reveal>
 
         <div className="mt-[clamp(3rem,8vw,6rem)]">
-          <Block n="01" label="Overview">
+          <Block n={num()} label="Overview">
             <p className="text-lede">{cs.overview}</p>
           </Block>
-          <Block n="02" label="The problem">
+          <Block n={num()} label="The problem">
             <p className="text-lede text-mute">{cs.problem}</p>
           </Block>
-          <Block n="03" label="What I built">
+          <Block n={num()} label="What I built">
             <ul className="space-y-4">
               {cs.built.map((b) => (
                 <li key={b} className="flex gap-4 text-lg">
@@ -115,10 +119,23 @@ const CaseStudyPage = async ({ params }: Params) => {
               ))}
             </ul>
           </Block>
-          <Block n="04" label="Engineering challenge">
+          <Block n={num()} label="Engineering challenge">
             <p className="text-lede text-mute">{cs.challenge}</p>
           </Block>
-          <Block n="05" label="Outcome">
+          {cs.considerations && (
+            <Block n={num()} label="Reliability & integrity">
+              <ol className="border-b border-line">
+                {cs.considerations.map((c, i) => (
+                  <li key={c.title} className="grid gap-2 border-t border-line py-5 md:grid-cols-[2.5rem_14rem_1fr] md:gap-6">
+                    <span className="text-meta pt-1 text-dim">{String(i + 1).padStart(2, "0")}</span>
+                    <h3 className="font-display text-xl tracking-[-0.02em]">{c.title}</h3>
+                    <p className="text-mute">{c.body}</p>
+                  </li>
+                ))}
+              </ol>
+            </Block>
+          )}
+          <Block n={num()} label="Outcome">
             <ul className="grid gap-4 sm:grid-cols-2">
               {cs.outcome.map((o) => (
                 <li key={o} className="rounded-[14px] border border-line bg-surface p-5 text-paper/90">
@@ -128,7 +145,7 @@ const CaseStudyPage = async ({ params }: Params) => {
             </ul>
           </Block>
           {project.links.length > 0 && (
-            <Block n="06" label="Links">
+            <Block n={num()} label="Links">
               <ul className="flex flex-wrap gap-3">
                 {project.links.map((l) => (
                   <li key={l.href}>

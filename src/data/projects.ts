@@ -44,35 +44,67 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "ardova-transaction-monitoring",
+    slug: "settlement-reconciliation",
     number: "02",
-    title: "Real-time transaction monitoring",
-    context: "Ardova · via Stanbic IBTC / Zest",
-    category: "Fintech · Operations",
+    title: "Settlement & reconciliation system",
+    context: "Zest Payments · Stanbic IBTC",
+    category: "Fintech · Backend",
     summary:
-      "Live transaction visibility across Ardova branches in Nigeria, so support teams can investigate and resolve issues faster.",
+      "The backend that settles successful transactions into merchants' dedicated wallets, runs automated payouts and keeps every financial record reconciled.",
     role: "Software Engineer",
     period: "2025 — Now",
-    stack: ["Real-time data", "Monitoring", "Investigation tooling"],
+    stack: [
+      "Settlement engine",
+      "Idempotency",
+      "Circuit breakers",
+      "Fault tolerance",
+      "Reconciliation",
+    ],
     featured: true,
     impact:
-      "Faster investigation and resolution of branch transactions, and better customer service.",
+      "Instant settlement into merchants' wallets and automated payouts, designed so retries and failures never duplicate a financial operation.",
     links: [],
-    visual: { kind: "abstract", variant: "monitor" },
+    visual: { kind: "abstract", variant: "settlement" },
     caseStudy: {
       overview:
-        "A real-time transaction monitoring system for Ardova branches across Nigeria, built as part of my work at Stanbic IBTC (Zest Payments).",
+        "At Stanbic IBTC (Zest Payments), I designed and built core parts of the transaction settlement and reconciliation system: instant settlement into merchants' dedicated wallets, the settlement engine, automated payouts and reconciliation.",
       problem:
-        "When a transaction fails at a branch, the clock starts. Without live visibility, support teams investigate blind: chasing logs, calling branches and keeping customers waiting while they piece the story together.",
+        "In payments, a transaction isn't finished when it succeeds. It's finished when the money lands in the right wallet, exactly once. Settlement sits between transactions, wallet balances and payouts, and all of those records have to agree, even when a dependent service is down or a job is interrupted halfway through.",
       built: [
-        "A monitoring system that surfaces transactions from branches nationwide as they happen.",
-        "Views designed for investigation: finding a specific transaction, understanding its state and acting on it.",
+        "The flow for instant settlement of successful transactions into merchants' dedicated wallets.",
+        "The settlement engine that processes transactions and ensures each one settles accurately.",
+        "Automated payouts driven by configurable settlement frequencies.",
+        "Reconciliation support that keeps transaction records, settlement entries and payout records consistent.",
       ],
       challenge:
-        "A monitoring tool only helps if people trust it to be current. The work was about making live data readable at a glance, and making the path from 'something looks wrong' to 'here's the transaction' as short as possible.",
+        "Moving money correctly under failure. Retries are necessary, but a retried settlement must never become a second settlement. Dependencies go down and jobs get interrupted, so every failure had to be recoverable without leaving balances, settlements and payouts out of step.",
+      considerations: [
+        {
+          title: "Idempotency",
+          body: "Settlement operations are safe to retry. A repeated request can't process the same settlement twice or produce a duplicate financial operation.",
+        },
+        {
+          title: "Circuit breakers",
+          body: "When a dependent service becomes unavailable, calls to it are cut off instead of piling up, preventing one failure from cascading through the system.",
+        },
+        {
+          title: "Resilience & fault tolerance",
+          body: "Temporary failures, service interruptions and recoverable errors are handled as expected conditions, not edge cases.",
+        },
+        {
+          title: "Transaction integrity",
+          body: "Transaction processing, wallet balances, settlements and payouts stay consistent with each other at every step.",
+        },
+        {
+          title: "Safe recovery",
+          body: "Retry strategies and failure handling are designed so that interrupted settlement operations can be resumed safely.",
+        },
+      ],
       outcome: [
-        "Live transaction visibility across Ardova branches nationwide.",
-        "Faster investigation and resolution of transactions, which improved customer service outcomes.",
+        "Successful transactions settle instantly into merchants' dedicated wallets.",
+        "Payouts run automatically on configurable settlement frequencies.",
+        "Transaction, settlement and payout records stay reconciled.",
+        "A settlement process built for retries and dependency failures, without duplicate or inconsistent financial operations.",
       ],
     },
   },

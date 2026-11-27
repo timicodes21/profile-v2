@@ -45,37 +45,169 @@ const Ledger = () => (
   </svg>
 );
 
-const Monitor = () => {
-  const nodes = Array.from({ length: 48 }, (_, i) => ({
-    x: 60 + (i % 12) * 46,
-    y: 70 + Math.floor(i / 12) * 46,
-    hot: i === 17 || i === 30,
-  }));
-  return (
-    <svg viewBox="0 0 640 400" className="h-full w-full" fill="none">
-      <text x={60} y={44} fill={T} style={mono}>
-        BRANCHES · LIVE
-      </text>
-      {nodes.map((n) => (
-        <g key={`${n.x}-${n.y}`}>
-          <circle cx={n.x} cy={n.y} r={n.hot ? 5 : 2.5} fill={n.hot ? A : L2} />
-          {n.hot && <circle cx={n.x} cy={n.y} r={14} stroke={A} strokeOpacity={0.5} />}
-        </g>
-      ))}
-      <path d="M60 300 H 580" stroke={L} />
-      <path
-        d="M60 340 L100 330 L140 336 L180 318 L220 326 L260 300 L300 322 L340 312 L380 330 L420 296 L460 316 L500 306 L540 320 L580 312"
-        stroke={A}
-      />
-      <text x={60} y={376} fill={T} style={mono}>
-        TXN / MIN
-      </text>
-      <text x={480} y={376} fill={A} style={mono}>
-        2 NEED REVIEW
-      </text>
-    </svg>
-  );
+/* Money flow: customer → processed → settlement → merchant wallet → payout, reconciled. */
+const sans = { fontFamily: "var(--font-sans)", fontSize: 10 } as const;
+
+const Head = ({ x, y, dir, color }: { x: number; y: number; dir: "right" | "left" | "down"; color: string }) => {
+  const pts =
+    dir === "right"
+      ? `${x},${y} ${x - 7},${y - 4} ${x - 7},${y + 4}`
+      : dir === "left"
+        ? `${x},${y} ${x + 7},${y - 4} ${x + 7},${y + 4}`
+        : `${x},${y} ${x - 4},${y - 7} ${x + 4},${y - 7}`;
+  return <polygon points={pts} fill={color} />;
 };
+
+const FlowNode = ({
+  x,
+  y,
+  w,
+  h = 44,
+  step,
+  title,
+  sub,
+  strong,
+}: {
+  x: number;
+  y: number;
+  w: number;
+  h?: number;
+  step: string;
+  title: string;
+  sub: string;
+  strong?: boolean;
+}) => (
+  <g>
+    {step && (
+      <text x={x} y={y - 8} fill={T} style={{ ...mono, fontSize: 8 }}>
+        {step}
+      </text>
+    )}
+    <rect
+      x={x}
+      y={y}
+      width={w}
+      height={h}
+      rx={8}
+      stroke={strong ? A : L2}
+      fill={strong ? "rgb(255 107 53 / 0.08)" : "rgb(10 10 10 / 0.6)"}
+    />
+    <text x={x + 12} y={y + h / 2 - 3} fill={strong ? A : "rgb(245 245 240 / 0.85)"} style={mono}>
+      {title}
+    </text>
+    <text x={x + 12} y={y + h / 2 + 11} fill={T} style={sans}>
+      {sub}
+    </text>
+  </g>
+);
+
+const SettlementWide = () => (
+  <svg viewBox="0 0 640 400" className="hidden h-full w-full sm:block" fill="none">
+    {/* 1–3: payment is made, processed, and enters settlement */}
+    <FlowNode x={28} y={60} w={132} step="01" title="CUSTOMER PAYMENT" sub="via any payment channel" />
+    <path d="M160 82 H 252" stroke={A} />
+    <Head x={254} y={82} dir="right" color={A} />
+    <FlowNode x={254} y={60} w={132} step="02" title="PROCESSED" sub="payment successful" />
+    <path d="M386 82 H 478" stroke={A} />
+    <Head x={480} y={82} dir="right" color={A} />
+    <FlowNode x={480} y={60} w={132} step="03" title="SETTLEMENT" sub="amount determined" />
+
+    {/* 4–5: funds settle into the merchant wallet (instantly, where applicable) */}
+    <path d="M546 104 V 206 H 402" stroke={A} strokeWidth={1.5} />
+    <Head x={400} y={206} dir="left" color={A} />
+    <text x={474} y={196} fill={A} style={sans} textAnchor="middle">
+      Instant settlement
+    </text>
+    <text x={474} y={224} fill={T} style={{ ...sans, fontSize: 9 }} textAnchor="middle">
+      where applicable
+    </text>
+
+    <FlowNode x={240} y={176} w={160} h={60} step="04" title="MERCHANT WALLET" sub="settled funds available" strong />
+
+    {/* 6: automated payouts on the merchant's configured schedule */}
+    <path d="M240 206 H 152" stroke={L2} strokeDasharray="4 4" />
+    <Head x={150} y={206} dir="left" color={L2} />
+    <text x={196} y={196} fill={T} style={sans} textAnchor="middle">
+      Scheduled payout
+    </text>
+    {[0, 1, 2, 3].map((i) => (
+      <circle key={i} cx={172 + i * 16} cy={221} r={2} fill={i === 3 ? A : L2} />
+    ))}
+    <FlowNode x={28} y={184} w={120} step="05" title="PAYOUT" sub="to the merchant" />
+
+    {/* 7: every record is reconciled */}
+    <path d="M320 236 V 290" stroke={L} strokeDasharray="2 4" />
+    <rect x={28} y={290} width={584} height={56} rx={10} stroke={L} fill="rgb(10 10 10 / 0.5)" />
+    <text x={44} y={314} fill={A} style={mono}>
+      06 · RECONCILIATION
+    </text>
+    <text x={44} y={330} fill={T} style={sans}>
+      every record matches
+    </text>
+    {["Transaction", "Settlement", "Wallet", "Payout"].map((label, i) => (
+      <g key={label}>
+        <rect x={220 + i * 98} y={306} width={82} height={24} rx={12} stroke={L2} />
+        <text x={261 + i * 98} y={321} fill="rgb(245 245 240 / 0.8)" style={sans} textAnchor="middle">
+          {label}
+        </text>
+        {i < 3 && (
+          <text x={310 + i * 98} y={322} fill={A} style={mono} textAnchor="middle">
+            =
+          </text>
+        )}
+      </g>
+    ))}
+  </svg>
+);
+
+/* Same story, stacked vertically so labels stay legible on phones. */
+const SettlementTall = () => (
+  <svg viewBox="0 0 320 440" className="h-full w-full sm:hidden" fill="none">
+    <FlowNode x={60} y={16} w={200} h={38} step="" title="CUSTOMER PAYMENT" sub="via any payment channel" />
+    <path d="M160 54 V 70" stroke={A} />
+    <Head x={160} y={76} dir="down" color={A} />
+    <FlowNode x={60} y={76} w={200} h={38} step="" title="PROCESSED" sub="payment successful" />
+    <path d="M160 114 V 130" stroke={A} />
+    <Head x={160} y={136} dir="down" color={A} />
+    <FlowNode x={60} y={136} w={200} h={38} step="" title="SETTLEMENT" sub="amount determined" />
+
+    <path d="M160 174 V 208" stroke={A} strokeWidth={1.5} />
+    <Head x={160} y={214} dir="down" color={A} />
+    <text x={172} y={192} fill={A} style={sans}>
+      Instant settlement
+    </text>
+    <text x={172} y={205} fill={T} style={{ ...sans, fontSize: 9 }}>
+      where applicable
+    </text>
+
+    <FlowNode x={60} y={214} w={200} h={48} step="" title="MERCHANT WALLET" sub="settled funds available" strong />
+
+    <path d="M160 262 V 292" stroke={L2} strokeDasharray="4 4" />
+    <Head x={160} y={298} dir="down" color={L2} />
+    <text x={172} y={280} fill={T} style={sans}>
+      Scheduled payout
+    </text>
+    {[0, 1, 2, 3].map((i) => (
+      <circle key={i} cx={175 + i * 12} cy={290} r={1.8} fill={i === 3 ? A : L2} />
+    ))}
+    <FlowNode x={60} y={298} w={200} h={38} step="" title="PAYOUT" sub="to the merchant" />
+
+    <rect x={24} y={352} width={272} height={44} rx={10} stroke={L} fill="rgb(10 10 10 / 0.5)" />
+    <text x={38} y={370} fill={A} style={mono}>
+      RECONCILIATION
+    </text>
+    <text x={38} y={386} fill={T} style={{ ...sans, fontSize: 9 }}>
+      transaction = settlement = wallet = payout
+    </text>
+  </svg>
+);
+
+const Settlement = () => (
+  <>
+    <SettlementWide />
+    <SettlementTall />
+  </>
+);
 
 const Savings = () => {
   const members = Array.from({ length: 7 }, (_, i) => {
@@ -158,7 +290,7 @@ const Estate = () => (
   </svg>
 );
 
-const abstracts = { ledger: Ledger, monitor: Monitor, savings: Savings, bot: Bot, estate: Estate };
+const abstracts = { ledger: Ledger, settlement: Settlement, savings: Savings, bot: Bot, estate: Estate };
 
 /* ---------- Public component ---------- */
 
@@ -174,6 +306,7 @@ export const ProjectVisual = ({ visual, className, sizes = "(min-width: 1024px) 
     className={cn(
       "relative aspect-[16/10] overflow-hidden rounded-[14px] border border-line bg-ink-2 transition-colors duration-500 group-hover:border-line-strong",
       className,
+      visual.kind === "abstract" && visual.variant === "settlement" && "max-sm:aspect-[8/11]",
     )}
   >
     {visual.kind === "image" ? (
