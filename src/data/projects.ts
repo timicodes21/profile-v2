@@ -23,7 +23,16 @@ export const projects: Project[] = [
     featured: true,
     impact:
       "Fewer critical production issues, with unit-test coverage held at 80%+.",
-    links: [],
+    links: [
+      {
+        label: "Zest Business · iOS",
+        href: "https://apps.apple.com/ng/app/zest-business/id6743861413",
+      },
+      {
+        label: "Zest Business · Android",
+        href: "https://play.google.com/store/apps/details?id=com.zest.zestmerchant",
+      },
+    ],
     visual: { kind: "abstract", variant: "ledger" },
     caseStudy: {
       overview:

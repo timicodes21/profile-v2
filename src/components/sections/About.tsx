@@ -19,11 +19,11 @@ export const About = () => (
         <figure>
           <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] border border-line bg-ink-2">
             <Image
-              src="/images/portrait.jpg"
+              src="/images/profile.jpg"
               alt="Portrait of Timileyin Babalola"
               fill
               sizes="(min-width: 1024px) 30vw, 100vw"
-              className="media object-cover object-[50%_30%]"
+              className="media object-cover object-[50%_45%]"
             />
           </div>
           <figcaption className="text-meta mt-3 flex justify-between text-dim">
@@ -36,18 +36,20 @@ export const About = () => (
       <div className="lg:col-span-7 lg:col-start-6">
         <Reveal className="space-y-6 text-lede">
           <p>
-            I&apos;m a software engineer in Lagos with 5+ years of building secure, scalable web
-            and mobile applications, most of them in fintech.{" "}
+            I&apos;m a software engineer and team lead in Lagos with 5+ years of building
+            secure, scalable software across web, mobile and backend systems, with most of my
+            experience in fintech.{" "}
             <span className="text-mute">
-              Payments, digital banking, lending, savings: products where the person on the
-              other side of the screen trusts you with something that matters.
+              Payments, wallets, settlement, lending and savings: products where reliability,
+              security and trust matter.
             </span>
           </p>
           <p className="text-mute">
-            The work I enjoy most sits where product and engineering meet. I like to understand
-            why something is being built, design it so the next person can change it safely,
-            test it so releases are boring, and stay with it after launch to see whether it did
-            its job.
+            I enjoy working where product, engineering and people meet. I lead teams, solve
+            complex engineering problems, and design systems with the next engineer in mind,
+            from the client applications people use to the backend services that power them. I
+            care about building it right, shipping it confidently, and staying close enough to
+            the product to know whether it actually works.
           </p>
         </Reveal>
 
